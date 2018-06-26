@@ -27,3 +27,6 @@ export MYDEVAPPS=/Applications/Dev
 #########################################################################
 export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
 export NVM_DIR=~/.nvm
+
+# CUSTOM
+export HOMEBREW_GITHUB_API_TOKEN=c17503937f47e1d8d84212f3b534c832be7d6426

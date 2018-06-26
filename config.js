@@ -3,19 +3,15 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
-    // https://github.com/wting/autojump
-    'autojump',
-    // alternative to `cat`: https://github.com/sharkdp/bat
-    'bat',
-    // Install GNU core utilities (those that come with macOS are outdated)
+    // cmake is required to compile vim bundle YouCompleteMe
+    'cmake',
+    // Install GNU core utilities (those that come with OS X are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
     'dos2unix',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     'findutils',
-    // 'fortune',
-    'fzf',
-    'readline', // ensure gawk gets good readline
+    'fortune',
     'gawk',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
     'gifsicle',
@@ -29,6 +25,8 @@ module.exports = {
     'homebrew/dupes/grep',
     // https://github.com/jkbrzt/httpie
     'httpie',
+    'imagemagick',
+    'imagesnap',
     // jq is a sort of JSON grep
     'jq',
     // Mac App Store CLI: https://github.com/mas-cli/mas
@@ -48,17 +46,22 @@ module.exports = {
     'vim --with-client-server --with-override-system-vi',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
+    // customizations, mana
+    'hub',
+    'awscli',
+    'terraform',
+    'sbt',
+    'shfmt'
   ],
   cask: [
     //'adium',
     //'amazon-cloud-drive',
     //'atom',
-    // 'box-sync',
+    'box-sync',
     //'comicbooklover',
     //'diffmerge',
-    'docker', // docker for mac
-    //'dropbox',
+    'dropbox',
     //'evernote',
     'flux',
     'gpg-suite',
@@ -75,35 +78,36 @@ module.exports = {
     'the-unarchiver',
     //'torbrowser',
     //'transmission',
-    'visual-studio-code',
-    //'vlc',
-    'xquartz'
+    'vlc',
+    'xquartz',
+    // Java
+    'java',
+    'shiftit',
+    'visualvm'
   ],
   gem: [
+    // 'git-up'
+    // 'bundler'
   ],
   npm: [
-    'antic',
-    'buzzphrase',
-    'eslint',
-    'instant-markdown-d',
+    // 'antic',
+    // 'buzzphrase',
+    // 'eslint',
+    // 'instant-markdown-d',
+    // 'npm-check',
+    // 'yo',
     // 'generator-dockerize',
     // 'gulp',
-    'npm-check-updates',
-    'prettyjson',
-    'trash',
-    'vtop'
-    // ,'yo'
-  ],
-  mas: [
-    //com.apple.dt.Xcode (10.2.1)
-    '497799835',
-    //com.if.Amphetamine (4.1.6)
-    //'937984704',
-    //net.shinyfrog.bear (1.6.15)
-    //'1091189122',
-    //com.monosnap.monosnap (3.5.8)
-    //'540348655',
-    //com.app77.pwsafemac (4.17)
-    //'520993579',
-  ],
+    // 'prettyjson',
+    // 'trash',
+    // 'vtop',
+    // customizations, mana
+    'webpack',
+    'gulp-cli',
+    'grunt-cli',
+    'bower',
+    'bower-installer',
+    'serverless',
+    'jshint'
+  ]
 };

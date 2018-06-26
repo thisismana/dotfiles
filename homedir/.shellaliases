@@ -93,15 +93,22 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 
 alias vtop="vtop --theme wizard"
 
-alias jsonfix="pbpaste | jq . | pbcopy"
+# customizations, mana
+alias p="cd ~/projects"
+eval "$(hub alias -s)"
+alias ssh-wn24='ssh -F ~/.ssh/weltn24/config'
 
-alias lookbusy="cat /dev/urandom | hexdump -C | grep \"34 32\""
-alias td="todo.sh"
-alias tda="todo.sh add"
-alias tdl="todo.sh list"
-alias tdd="todo.sh do"
+bindkey -e
+bindkey '[C' forward-word
+bindkey '[D' backward-word
 
-alias k='kubectl'
-alias kp='kubectl get pods -o wide'
-alias kdp='kubectl describe pod'
-alias kdn='kubectl describe node'
+function ec2ip () {
+    aws ec2 describe-instances --instance-ids $1 --query 'Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddress' | jq --raw-output '.[0]'
+}
+function uuid() {
+    uuid=`uuidgen` eval 'echo $uuid:l'
+}
+
+alias cgrep="grep --color=always"
+
+alias curlA="curl -I -L -H 'Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no'"
