@@ -11,7 +11,8 @@ module.exports = {
     'dos2unix',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     'findutils',
-    'fortune',
+    // 'fortune',
+    'readline', // ensure gawk gets good readline
     'gawk',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
     'gifsicle',
@@ -78,16 +79,11 @@ module.exports = {
     'the-unarchiver',
     //'torbrowser',
     //'transmission',
-    'vlc',
-    'xquartz',
-    // Java
-    'java',
-    'shiftit',
-    'visualvm'
+    'visual-studio-code',
+    //'vlc',
+    'xquartz'
   ],
   gem: [
-    // 'git-up'
-    // 'bundler'
   ],
   npm: [
     // 'antic',
@@ -98,16 +94,10 @@ module.exports = {
     // 'yo',
     // 'generator-dockerize',
     // 'gulp',
-    // 'prettyjson',
-    // 'trash',
-    // 'vtop',
-    // customizations, mana
-    'webpack',
-    'gulp-cli',
-    'grunt-cli',
-    'bower',
-    'bower-installer',
-    'serverless',
-    'jshint'
+    'npm-check-updates',
+    'prettyjson',
+    'trash',
+    'vtop'
+    // ,'yo'
   ]
 };

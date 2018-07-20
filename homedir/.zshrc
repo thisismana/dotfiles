@@ -3,8 +3,13 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
 # POWERLEVEL9K_MODE='awesome-patched'
 export ZSH_THEME="powerlevel9k/powerlevel9k"
+<<<<<<< HEAD
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_DISABLE_RPROMPT=false
+||||||| constructed merge base
+=======
+# export ZSH_THEME="agnoster"
+>>>>>>> new packages and removing fortune
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 # https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments
 # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt
@@ -40,6 +45,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Customize to your needs...
 unsetopt correct
 
+<<<<<<< HEAD
 function mkpw {
     cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9,./][!@#$%^&*()_+={}|":?><' | head -c ${1:-32}; echo
 }
@@ -61,3 +67,10 @@ function enable_keymapping {
 function disable_keymapping {
     hidutil property --set '{"UserKeyMapping": []}'
 }
+||||||| constructed merge base
+# run fortune on new terminal :)
+fortune
+=======
+# run fortune on new terminal :)
+# fortune
+>>>>>>> new packages and removing fortune
