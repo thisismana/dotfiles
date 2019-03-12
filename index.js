@@ -38,13 +38,12 @@ inquirer.prompt([{
     }
   }
 
-  if(!answers.packages){
-    return console.log('skipping package installs')
-  }
-
-  const tasks = [];
-
-  ['brew', 'cask', 'npm', 'gem', 'mas'].forEach( type => {
+  [
+    'brew'
+    ,'cask'
+    ,'npm'
+    // ,'gem'
+  ].forEach( type => {
     if(config[type] && config[type].length){
       tasks.push((cb)=>{
         console.info(emoji.get('coffee'), ' installing '+type+' packages')
@@ -66,7 +65,6 @@ inquirer.prompt([{
       })
     }
   })
-  series(tasks, function(err, results) {
-    console.log('package install complete')
-  })
+
 })
+
