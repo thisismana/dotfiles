@@ -7,7 +7,7 @@ module.exports = {
     'cmake',
     // Install GNU core utilities (those that come with OS X are outdated)
     // alternative to `cat`: https://github.com/sharkdp/bat
-    'bat', 
+    'bat',
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',

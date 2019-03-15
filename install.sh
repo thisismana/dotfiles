@@ -13,10 +13,24 @@ source ./lib_sh/requirers.sh
 
 bot "Hi! I'm going to install tooling and tweak your system settings. Here I go..."
 
+<<<<<<< HEAD
 # Do we need to ask for sudo password or is it already passwordless?
 grep -q 'NOPASSWD:     ALL' /etc/sudoers.d/$LOGNAME > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "no suder file"
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+# Ask for the administrator password upfront
+if ! sudo grep -q "%wheel		ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles" "/etc/sudoers"; then
+
+  # Ask for the administrator password upfront
+  bot "I need you to enter your sudo password so I can install some things:"
+=======
+# Do we need to ask for sudo password or is it already passwordless?
+if ! sudo grep -q "%wheel		ALL=(ALL) NOPASSWD: ALL #atomantic/dotfiles" "/etc/sudoers"; then
+
+  # Ask for the administrator password upfront
+  bot "I need you to enter your sudo password so I can install some things:"
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
   sudo -v
 
   # Keep-alive: update existing sudo time stamp until the script has finished
@@ -135,6 +149,7 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   if [[ $response =~ (yes|y|Y) ]]; then
     running "Set a custom wallpaper image"
     # rm -rf ~/Library/Application Support/Dock/desktoppicture.db
+    bot "I will backup system wallpapers in ~/.dotfiles/img/"
     sudo cp /System/Library/CoreServices/DefaultDesktop.jpg img/DefaultDesktop.jpg > /dev/null 2>&1
     sudo cp /Library/Desktop\ Pictures/El\ Capitan.jpg img/El\ Capitan.jpg > /dev/null 2>&1
     sudo cp /Library/Desktop\ Pictures/Sierra.jpg img/Sierra.jpg > /dev/null 2>&1
@@ -152,13 +167,28 @@ if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
   fi
 fi
 
+<<<<<<< HEAD
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
 
 bot "ensuring build/install tools are available"
 if ! xcode-select --print-path &> /dev/null; then
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+#####
+# install homebrew (CLI Packages)
+#####
+=======
+# ###########################################################
+# Install non-brew various tools (PRE-BREW Installs)
+# ###########################################################
+bot "ensuring build/install tools are available"
+xcode-select --install 2>&1 > /dev/null
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer 2>&1 > /dev/null
+sudo xcodebuild -license accept 2>&1 > /dev/null
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
 
+<<<<<<< HEAD
     # Prompt user to install the XCode Command Line Tools
     xcode-select --install &> /dev/null
 
@@ -183,6 +213,14 @@ fi
 # install homebrew (CLI Packages)
 # ###########################################################
 running "checking homebrew..."
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+running "checking homebrew install"
+=======
+# ###########################################################
+# install homebrew (CLI Packages)
+# ###########################################################
+running "checking homebrew..."
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
   action "installing homebrew"
@@ -208,9 +246,35 @@ else
   fi
 fi
 
+<<<<<<< HEAD
 # Just to avoid a potential bug
 mkdir -p ~/Library/Caches/Homebrew/Formula
 brew doctor
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+#####
+# install brew cask (UI Packages)
+#####
+running "checking brew-cask install"
+output=$(brew tap | grep cask)
+if [[ $? != 0 ]]; then
+  action "installing brew-cask"
+  require_brew caskroom/cask/brew-cask
+fi
+brew tap caskroom/versions > /dev/null 2>&1
+ok
+=======
+# ###########################################################
+# install brew cask (UI Packages)
+# ###########################################################
+running "checking brew-cask install"
+output=$(brew tap | grep cask)
+if [[ $? != 0 ]]; then
+  action "installing brew-cask"
+  require_brew caskroom/cask/brew-cask
+fi
+brew tap caskroom/versions > /dev/null 2>&1
+ok
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
 
 # skip those GUI clients, git command-line all the way
 require_brew git
@@ -241,6 +305,7 @@ if [[ $response =~ (y|yes|Y) ]]; then
   pushd homedir > /dev/null 2>&1
   now=$(date +"%Y.%m.%d.%H.%M.%S")
 
+<<<<<<< HEAD
   for file in .*; do
     if [[ $file == "." || $file == ".." ]]; then
       continue
@@ -293,6 +358,78 @@ if [[ $response =~ (y|yes|Y) ]];then
   require_cask font-source-code-pro
   ok
 fi
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+for file in .*; do
+  if [[ $file == "." || $file == ".." ]]; then
+    continue
+  fi
+  running "~/$file"
+  # if the file exists:
+  if [[ -e ~/$file ]]; then
+      mkdir -p ~/.dotfiles_backup/$now
+      mv ~/$file ~/.dotfiles_backup/$now/$file
+      echo "backup saved as ~/.dotfiles_backup/$now/$file"
+  fi
+  # symlink might still exist
+  unlink ~/$file > /dev/null 2>&1
+  # create the link
+  ln -s ~/.dotfiles/homedir/$file ~/$file
+  echo -en '\tlinked';ok
+done
+=======
+  for file in .*; do
+    if [[ $file == "." || $file == ".." ]]; then
+      continue
+    fi
+    running "~/$file"
+    # if the file exists:
+    if [[ -e ~/$file ]]; then
+        mkdir -p ~/.dotfiles_backup/$now
+        mv ~/$file ~/.dotfiles_backup/$now/$file
+        echo "backup saved as ~/.dotfiles_backup/$now/$file"
+    fi
+    # symlink might still exist
+    unlink ~/$file > /dev/null 2>&1
+    # create the link
+    ln -s ~/.dotfiles/homedir/$file ~/$file
+    echo -en '\tlinked';ok
+  done
+
+  popd > /dev/null 2>&1
+fi
+
+bot "VIM Setup"
+read -r -p "Do you want to install vim plugins now? [y|N] " response
+if [[ $response =~ (y|yes|Y) ]];then
+  bot "Installing vim plugins"
+  # cmake is required to compile vim bundle YouCompleteMe
+  # require_brew cmake
+  vim +PluginInstall +qall > /dev/null 2>&1
+  ok
+else
+  ok "skipped. Install by running :PluginInstall within vim"
+fi
+
+
+read -r -p "Install fonts? [y|N] " response
+if [[ $response =~ (y|yes|Y) ]];then
+  bot "installing fonts"
+  # need fontconfig to install/build fonts
+  require_brew fontconfig
+  ./fonts/install.sh
+  brew tap caskroom/fonts
+  require_cask font-fontawesome
+  require_cask font-awesome-terminal-fonts
+  require_cask font-hack
+  require_cask font-inconsolata-dz-for-powerline
+  require_cask font-inconsolata-g-for-powerline
+  require_cask font-inconsolata-for-powerline
+  require_cask font-roboto-mono
+  require_cask font-roboto-mono-for-powerline
+  require_cask font-source-code-pro
+  ok
+fi
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
 
 
 # if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
@@ -330,6 +467,7 @@ brew cleanup --force > /dev/null 2>&1
 rm -f -r /Library/Caches/Homebrew/* > /dev/null 2>&1
 ok
 
+<<<<<<< HEAD
 bot "OS Configuration"
 read -r -p "Do you want to update the system configurations? [y|N] " response
 if [[ -z $response || $response =~ ^(n|N) ]]; then
@@ -338,6 +476,17 @@ if [[ -z $response || $response =~ ^(n|N) ]]; then
   exit
 fi
 
+||||||| parent of cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
+=======
+bot "OS Configuration"
+read -r -p "Do you want to update the system configurations? [y|N] " response
+if [[ -z $response || $response =~ ^(n|N) ]]; then
+  open /Applications/iTerm.app
+  bot "All done"
+  exit
+fi 
+
+>>>>>>> cb5c97b... 5.0.0 - fix package install issue. Everything requires positive user acceptance.
 ###############################################################################
 bot "Configuring General System UI/UX..."
 ###############################################################################
