@@ -40,12 +40,22 @@ plugins=(colorize compleat dirpersist autojump git github gulp history cp docker
 
 source $ZSH/oh-my-zsh.sh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+source /usr/local/opt/nvm/nvm.sh
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use &> /dev/null
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    nvm use default &> /dev/null
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 # Customize to your needs...
 unsetopt correct
 
-<<<<<<< HEAD
 function mkpw {
     cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9,./][!@#$%^&*()_+={}|":?><' | head -c ${1:-32}; echo
 }
@@ -67,10 +77,3 @@ function enable_keymapping {
 function disable_keymapping {
     hidutil property --set '{"UserKeyMapping": []}'
 }
-||||||| constructed merge base
-# run fortune on new terminal :)
-fortune
-=======
-# run fortune on new terminal :)
-# fortune
->>>>>>> new packages and removing fortune
