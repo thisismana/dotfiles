@@ -3,9 +3,8 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
-    // cmake is required to compile vim bundle YouCompleteMe
-    'cmake',
-    // Install GNU core utilities (those that come with OS X are outdated)
+    // https://github.com/wting/autojump
+    'autojump',
     // alternative to `cat`: https://github.com/sharkdp/bat
     'bat',
     // Install GNU core utilities (those that come with macOS are outdated)
