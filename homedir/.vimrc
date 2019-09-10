@@ -51,19 +51,6 @@ Plugin 'digitaltoad/vim-pug'
 " Plugin 'elzr/vim-json'
 " Plugin 'SirVer/ultisnips'
 "Plugin 'sheerun/vim-polyglot'
-<<<<<<< Updated upstream
-" plugins from http://vim-scripts.org/vim/scripts.html
-Plugin 'node.js'
-Plugin 'SuperTab'
-||||||| merged common ancestors
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'node.js'
-Plugin 'SuperTab'
-=======
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'node.js'
-" Plugin 'SuperTab'
->>>>>>> Stashed changes
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)

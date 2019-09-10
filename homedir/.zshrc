@@ -4,6 +4,7 @@ export ZSH=$HOME/.dotfiles/oh-my-zsh
 # POWERLEVEL9K_MODE='awesome-patched'
 export ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_DISABLE_RPROMPT=false
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 # https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments
 # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt
@@ -38,13 +39,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Customize to your needs...
 unsetopt correct
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/mana/projects/up-lambda-purge/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mana/projects/up-lambda-purge/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/mana/projects/up-lambda-purge/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/mana/projects/up-lambda-purge/node_modules/tabtab/.completions/sls.zsh
 
 function mkpw {
     cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9,./][!@#$%^&*()_+={}|":?><' | head -c ${1:-32}; echo

@@ -92,6 +92,34 @@ alias spoton="sudo mdutil -a -i on"
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 alias vtop="vtop --theme wizard"
+# customizations, mana
+alias p="cd ~/projects"
+eval "$(hub alias -s)"
+alias ssh-wn24='ssh -F ~/.ssh/weltn24/config'
+
+bindkey -e
+bindkey '[C' forward-word
+bindkey '[D' backward-word
+
+function ec2ip () {
+    aws ec2 describe-instances --instance-ids $1 --query 'Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddress' | jq --raw-output '.[0]'
+}
+function ecsInstances() {
+  local cluster="up-cluster-$1"
+  if [ -z "$1" ]; then echo 'env required as 1st arg'; return; else echo "using cluster $cluster"; fi
+
+  local containers=$(aws ecs --region eu-west-1 list-container-instances --cluster $cluster --query "containerInstanceArns[*]" --output text | sed 's|\s| |g')
+
+  aws ecs --region eu-west-1 describe-container-instances --cluster $cluster --container-instances $(echo $containers) --query "containerInstances[].ec2InstanceId"
+
+}
+function uuid() {
+    uuid=`uuidgen` eval 'echo $uuid:l'
+}
+
+alias cgrep="grep --color=always"
+
+alias curlA="curl -I -L -H 'Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no'"
 
 # customizations, mana
 alias p="cd ~/projects"
@@ -109,6 +137,8 @@ function uuid() {
     uuid=`uuidgen` eval 'echo $uuid:l'
 }
 
-alias cgrep="grep --color=always"
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source "/usr/local/share/chtf/chtf.sh"
+fi
 
-alias curlA="curl -I -L -H 'Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no'"
+alias cgrep="grep --color=always"
