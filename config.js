@@ -88,19 +88,6 @@ module.exports = {
   ],
   gem: [
   ],
-  npm: [
-    // 'antic',
-    // 'buzzphrase',
-    // 'eslint',
-    // 'instant-markdown-d',
-    // 'npm-check',
-    // 'yo',
-    // 'generator-dockerize',
-    // 'gulp',
-    'npm-check-updates',
-    'prettyjson',
-    'trash',
-    'vtop'
-    // ,'yo'
+  npm: [    
   ]
 };
